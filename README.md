@@ -51,14 +51,13 @@ To understand common web application vulnerabilities by analyzing an intentional
 ## Summary
 **REPORT for http://127.0.0.1:8080 Webgoat Environment using ZAP**
 ### Overall Alert Summary
--------------------------------------
 | Risk Level     | Number of Alerts |
--------------------------------------
+|----------------|------------------|
 | High           | 0                |
 | Medium         | 4                |
 | Low            | 2                |
 | Informational  | 4                |
--------------------------------------
+
 ### Medium-Risk Alerts
 1. Missing CSRF Tokens (5) – Forms are vulnerable to CSRF attacks.
    - Fix: Add anti-CSRF tokens (e.g., with OWASP CSRFGuard).
