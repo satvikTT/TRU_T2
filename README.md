@@ -57,6 +57,29 @@ To understand common web application vulnerabilities by analyzing an intentional
 - **Cross-Site Request Forgery (CSRF):**  
   Examine forms and state-changing requests to identify the absence of protective anti-CSRF mechanisms (such as unique tokens). This vulnerability could allow malicious sites to perform unauthorized actions on behalf of an authenticated user.
 ---
+## Manual Exploitation
+1. SQL Injection (SQLi)
+   - How it’s done:
+     - Test input fields (login forms, search bars) with special characters like ' OR '1'='1.
+     - Use simple payloads to bypass login or retrieve extra data.
+     - Experiment with UNION SELECT to extract database tables and columns.
+   - Goal:
+     - Access, modify, or leak database information without permission.
+2. Cross-Site Scripting (XSS)
+   - How it’s done:
+     - Enter harmless HTML or JavaScript in input fields (e.g., <script>alert(1)</script>).
+     - See if the script runs in the browser.
+     - Try different variations to bypass filters.
+   - Goal:
+     - Run malicious scripts in other users’ browsers to steal cookies or hijack sessions.
+3. Cross-Site Request Forgery (CSRF)
+   - How it’s done:
+     - Identify forms or actions that change data (e.g., change password) without CSRF tokens.
+     - Create a fake HTML form that auto-submits using the victim’s session.
+     - Send the malicious link to the victim.
+   - Goal:
+     - Trick users into performing unwanted actions without their knowledge.
+---
 ## Vulnerability Exploration and Verification
 
 - **Develop a comprehensive understanding:**  
@@ -121,4 +144,5 @@ To understand common web application vulnerabilities by analyzing an intentional
 ---
 #### Prepared By:
 - **_Satvik Bhagat_**
+- Internship: Cyber Security Internship @ The Red Users
 - **Date**: 13-06-2025
