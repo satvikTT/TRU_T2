@@ -48,13 +48,72 @@ To understand common web application vulnerabilities by analyzing an intentional
      - CSRF, etc.
 4. After completion export the report in which ever suited format needed (pdf).
 ---
+## Focus Areas for Vulnerability Identification
+
+- **SQL Injection (SQLi):**  
+  Deliberately attempt to inject malicious SQL statements — for example, by submitting inputs like ```' OR '1'='1``` in login forms or search fields. This helps determine if the application improperly handles user-supplied data in database queries, potentially allowing unauthorized access or data leakage.
+- **Cross-Site Scripting (XSS):**  
+  Assess input fields for inadequate output encoding by submitting harmless JavaScript payloads, such as ```<script>alert(1)</script>```. Observe whether these scripts execute in the browser, indicating that the application fails to neutralize untrusted input.
+- **Cross-Site Request Forgery (CSRF):**  
+  Examine forms and state-changing requests to identify the absence of protective anti-CSRF mechanisms (such as unique tokens). This vulnerability could allow malicious sites to perform unauthorized actions on behalf of an authenticated user.
+---
+## Vulnerability Exploration and Verification
+
+- **Develop a comprehensive understanding:**  
+  For each identified vulnerability, carefully review the technical description and impact details provided by OWASP ZAP. Supplement this information with external research to understand real-world exploitation scenarios and consequences.
+
+- **Perform controlled manual exploitation:**  
+  - **For SQL Injection:**  
+    Manually test input fields by injecting crafted SQL commands to bypass authentication, retrieve hidden data, or modify database content, validating whether user input is properly sanitized.
+  - **For Cross-Site Scripting:**  
+    Enter harmless script tags or payloads into comment sections, input boxes, or URL parameters to verify if the application executes them in the user's browser, which could lead to session hijacking or data theft.
+  - **For Cross-Site Request Forgery:**  
+    Craft custom HTML forms or use tools like Burp Suite's Repeater to submit unauthorized requests. Check whether these requests can successfully change user data or perform sensitive actions without appropriate server-side verification.
+---
+## Detected Vulnerabilities and Their Potential Harm
+
+1. SQL Injection (SQLi)
+   - SQL Injection occurs when an attacker can insert or manipulate SQL queries via user input fields.
+   - Why it’s dangerous:
+     - Attackers can read, modify, or delete database records.
+     - It can lead to unauthorized data access, including sensitive info like passwords or financial data.
+     - In some cases, it allows complete control over the database server.
+2. Cross-Site Scripting (XSS)
+   - XSS happens when an attacker injects malicious JavaScript into web pages viewed by other users.
+   - Why it’s dangerous:
+     - Attackers can steal cookies, session tokens, or other sensitive data.
+     - They can impersonate victims and perform actions on their behalf.
+     - It can spread malware or redirect users to malicious sites.
+3. Cross-Site Request Forgery (CSRF)
+   - CSRF tricks a logged-in user’s browser into sending unauthorized requests to a web app.
+   - Why it’s dangerous:
+     - It can lead to unwanted actions like changing passwords, transferring funds, or modifying account settings — all without user knowledge.
+     - It exploits trust in the user’s session.
+---
+## Mitigation Measures for Common Web Vulnerabilities
+
+1. Preventing SQL injection
+   - Use prepared statements or parameterized queries instead of dynamic SQL.
+   - Validate and sanitize all user inputs.
+   - Use the principle of least privilege for database accounts.
+2. Preventing Cross-Site Scripting (XSS)
+   - Escape or encode user-generated content before displaying it.
+   - Implement input validation and sanitization.
+   - Use Content Security Policy (CSP) to limit script execution.
+3. Preventing Cross-Site Request Forgery (CSRF)
+   - Implement anti-CSRF tokens for forms and state-changing requests.
+   - Use SameSite cookie attributes.
+   - Require re-authentication for sensitive actions.
+---
 ## Attachments
+
 1. Screenshots of ZAP scan results
 2. Screenshots for each manual exploit
 3. HTML sample for CSRF test
 4. Exported ZAP report
 ---
 ## Learning Outcomes
+
 - Understood how attackers exploit common web vulnerabilities
 - Used OWASP ZAP to identify threats in a web app
 - Performed basic attacks on an intentionally vulnerable system
