@@ -144,5 +144,3 @@ To understand common web application vulnerabilities by analyzing an intentional
 ---
 #### Prepared By:
 - **_Satvik Bhagat_**
-- Internship: Cyber Security Internship @ The Red Users
-- **Date**: 13-06-2025
